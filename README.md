@@ -1,5 +1,7 @@
 # radicle-docker
 
+Set `AUTH_USER` and `AUTH_PASS` env vars and visit http://localhost:5232
+
 ```
-docker run -p5232 -v $PATH/data:/data mmskl/radicle-docker
+docker run -e AUTH_USER='username' -e AUTH_PASS='password' -p5232 mmskl/radicale
 ```
