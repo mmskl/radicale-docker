@@ -1,7 +1,11 @@
-FROM python:3.7-alpine
+FROM python:3.7-slim
 
-RUN pip install --no-cache-dir --upgrade radicale
+
+RUN apt update && apt install -y apache2-utils && \
+    pip install --no-cache-dir radicale passlib bcrypt
 
 EXPOSE 5232
+COPY entrypoint.sh /entrypoint.sh
 
-ENTRYPOINT [ "radicale", "--hosts=0.0.0.0:5232", "--foreground", "--storage-filesystem-folder=/data", "--auth-type=None" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
+
